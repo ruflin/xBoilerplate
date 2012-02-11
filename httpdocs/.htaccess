@@ -1,0 +1,18 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_URI} !^\/img\/.* [NC]
+RewriteCond %{REQUEST_URI} !^\/js\/.* [NC]
+
+RewriteRule ^css\/(.*)$ index.php?f=$1 [L,NC]
+
+RewriteRule ^([[:alnum:]]+)/([[:alnum:]]+)$ index.php?c=$1&p=$2 [L,NC]
+RewriteRule ^([[:alnum:]]+)$ index.php?c=$1&p=index [L,NC]
+
+
+#RewriteRule ^([[:alnum:]|-]+)![\/].*$ index.php [NC]
+
+
+#RewriteRule ^([[:alnum:]|-]+)[\?(.*)]?$ /index.php?p=$1&$2 [NC]
+
+#RewriteCond %{REQUEST_URI} !^\/img\/.* [NC]
+ErrorDocument 404 /page-not-found
