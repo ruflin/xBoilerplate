@@ -1,13 +1,11 @@
 <?php
 
 /**
- * Xodoa mini CMS
+ * xBoilerplate: Xodoa Boilerplate
  *
- * To reuse or modify this code permission of xodoa.com is necessary.
- *
- * @category Xodoa
+ * @category xBoilerPlate
  * @package  Xodoa
- * @copyright Copyright (c) 2007-2011 Xodoa (http://xodoa.com)
+ * @copyright Copyright (c) 2007-2012 Xodoa (http://xodoa.com)
  * @author   Nicolas Ruflin <ruflin@xodoa.com>
  */
 ini_set('error_log', '/tmp/php-error.log');
@@ -33,10 +31,9 @@ try {
 		$less = new lessc('css/' . $_GET['f']);
 		$content = $less->parse();
 	} else {
-		$xodoa = new Xodoa($_SERVER['REQUEST_URI'], $_GET);
-		$content = $xodoa->render();
+		$xBoilerplate = new xBoilerplate($_SERVER['REQUEST_URI'], $_GET);
+		$content = $xBoilerplate->render();
 	}
-
 
 } catch(Exception $e) {
 	error_log(print_r($e, true));
