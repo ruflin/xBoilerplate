@@ -28,6 +28,7 @@ try {
 
 	// Load css
 	if (substr($uri, 1,3) == 'css') {
+		header('Content-Type: text/css');
 		$less = new lessc('css/' . $_GET['f']);
 		$content = $less->parse();
 	} else {
