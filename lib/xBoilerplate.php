@@ -192,9 +192,16 @@ class xBoilerplate {
 		return $content;
 	}
 
+	/**
+	 * Checks if the given category / page is active
+	 *
+	 * @param string $c
+	 * @param string $p
+	 * @return string Returns 'active' if is active
+	 */
 	public function getActive($c = '', $p = '') {
 
-		// Remove get params
+		// TODO Remove get params
 		if (empty($p) && isset($_GET['c'])) {
 			return $c == $_GET['c']?'active':'';
 		}
