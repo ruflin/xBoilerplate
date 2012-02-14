@@ -1,0 +1,21 @@
+#panel {
+	position: fixed;
+	z-index: 9999;
+	bottom: 0;
+	left: 0;
+}
+.buttons {
+	background-color: #E7FDC0;
+	border: 1px solid black;
+	border-bottom: none;
+	border-left: none;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.clearBoth {
+	clear: both;
+	height: 0px;
+	line-height: 0px;
+	font-size: 0px;
+}
