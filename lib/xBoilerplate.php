@@ -31,7 +31,7 @@ class xBoilerplate {
 	public function __construct($uri, $params) {
 		$uriParse = parse_url($_SERVER['REQUEST_URI']);
 		$this->_params = $params;
-		$this->_basePath = dirname(__DIR__) . DIRECTORY_SEPARATOR;
+		$this->_basePath = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'httpdocs' . DIRECTORY_SEPARATOR;
 	}
 
 	/**
@@ -179,7 +179,7 @@ class xBoilerplate {
 			$name = $this->_getParam('c');
 		}
 
-		$file = '../menu/' . $name . '.php';
+		$file = $this->_basePath . 'menu/' . $name . '.php';
 		$content = '';
 
 		if (!empty($name) && file_exists($file)) {
