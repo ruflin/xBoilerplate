@@ -9,4 +9,8 @@ Vagrant::Config.run do |config|
 	config.vm.box_url = "http://ruflin.com/files/vagrant/debian-6.0.3-64-elastica-20120211.box"
 	config.vm.network :hostonly, "10.10.10.10"
 	config.vm.share_folder("www", "/var/www", ".")
+	config.vm.customize [
+    	  "modifyvm", :id,
+    	  "--memory", "2048"
+      ]
 end
