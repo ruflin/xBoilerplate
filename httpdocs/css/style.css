@@ -1,3 +1,24 @@
+/*========================================================================
+	Main Elements
+========================================================================*/
+.pie { position:relative; behavior:url(/js/libs/PIE.htc); }
+
+.clearBoth {
+	clear:both;
+	height:0px;
+	line-height:0px;
+	font-size:0px;
+}
+
+a {
+	text-decoration:none;
+}
+
+a:hover {
+
+	text-decoration:underline;
+}
+
 #panel {
 	position: fixed;
 	z-index: 9999;
@@ -13,9 +34,86 @@
 	padding-right: 5px;
 }
 
-.clearBoth {
-	clear: both;
-	height: 0px;
-	line-height: 0px;
-	font-size: 0px;
+
+/*========================================================================
+	Sample Navigation
+========================================================================*/
+
+#navigation {
+	list-style: none;
+	background: #b60002;
+	overflow: hidden;
+	width: 962px;
+}
+
+#navigation li {
+	float: left;
+	border-right: solid 1px #ca0002;
+	height: 35px;
+}
+
+#navigation li a:link, #navigation li a:visited {
+	text-decoration: none;
+	display: block;
+	height: 35px;
+	color: #fff;
+	line-height: 35px;
+	padding: 0 9px 0 9px;
+	border-right: solid 1px #990000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+#navigation li a:hover {
+	background: #990000;
+	color: #fff;
+}
+
+#navigation li.first {
+	border-left: solid 1px #ca0002;
+}
+
+/*========================================================================
+	Sample content styles
+========================================================================*/
+
+body > header {
+	width:996px;
+	margin:0 auto;
+}
+
+body > section {
+	width:976px;
+	margin:0 auto;
+	border:1px solid #666;
+	border-radius:4px;
+	background-color:#fff;
+	min-height:500px;
+	margin-bottom:20px;
+	padding:10px;
+}
+
+body > footer {
+	width:996px;
+	margin:0 auto;
+	padding-bottom:20px;
+}
+
+body {
+	background-color:#cccccc;
+}
+
+h1.mainHeading {
+	font-size:45px;
+	line-height: 55px;
+}
+
+h2 {
+	border-bottom:1px solid #000;
+	margin:5px 0;
+}
+
+img.structure {
+	float: left;
 }
