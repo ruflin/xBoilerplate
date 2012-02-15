@@ -9,7 +9,7 @@
 <p>For changes in the API please check the file changes.txt</p>
 <h2>Structure</h2>
 <img src="/img/structure.png" width="284" height="910" class="structure" />
-<p><-- This is the basic structure of xBoilerplate. It's pretty simple.<p></p>
+<p>This is the basic structure of xBoilerplate. It's pretty simple.</p>
 <p>There are 4 main folders, <b>config</b>, <b>httpdoc</b>, <b>lib</b> & <b>tmp</b>.</p>
 <p><b>Config:</b> this folder is for...</p>
 <p><b>lib:</b> In this folder we have some libraries such a lessc.php</p>
