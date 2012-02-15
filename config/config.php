@@ -1,9 +1,6 @@
 <?php 
 
 $config = array(
-	'cache' => true,
+	'cache' => false,
+	'dev' => true,
 );
-
-if (file_exists('local.php')) {
-	// Merge config array
-}
