@@ -1,22 +1,13 @@
 /*========================================================================
 	Main Elements
 ========================================================================*/
+.pie { position:relative; behavior:url(/js/libs/PIE.htc); }
+
 .clearBoth {
 	clear:both;
 	height:0px;
 	line-height:0px;
 	font-size:0px;
-}
-
-form {
-	margin:0px;
-	padding:0px;
-}
-
-
-h1, h2, h3, h4, h5, h6 {
-	margin:0px;
-	padding:0px;
 }
 
 a {
@@ -45,7 +36,7 @@ a:hover {
 
 
 /*========================================================================
-	Main Navigation
+	Sample Navigation
 ========================================================================*/
 
 #navigation {
@@ -83,6 +74,9 @@ a:hover {
 	border-left: solid 1px #ca0002;
 }
 
+/*========================================================================
+	Sample content styles
+========================================================================*/
 
 body > header {
 	width:996px;
@@ -103,8 +97,7 @@ body > section {
 body > footer {
 	width:996px;
 	margin:0 auto;
-	border-top:1px solid #000;
-	padding-top:5px;
+	padding-bottom:20px;
 }
 
 body {
@@ -118,4 +111,9 @@ h1.mainHeading {
 
 h2 {
 	border-bottom:1px solid #000;
+	margin:5px 0;
+}
+
+img.structure {
+	float: left;
 }
