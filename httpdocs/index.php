@@ -35,10 +35,10 @@ try {
 		$xBoilerplate = new xBoilerplate($_SERVER['REQUEST_URI'], $_GET);
 		$content = $xBoilerplate->render();
 	}
-
 } catch(Exception $e) {
 	error_log(print_r($e, true));
 	print_r($e);
 }
 
 echo $content;
+

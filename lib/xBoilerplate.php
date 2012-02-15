@@ -27,6 +27,7 @@ class xBoilerplate {
 
 	protected $_params = array();
 	protected $_basePath = '';
+	protected $_config = null;
 
 	public function __construct($uri, $params) {
 		$uriParse = parse_url($_SERVER['REQUEST_URI']);
@@ -173,7 +174,13 @@ class xBoilerplate {
 		return $param;
 	}
 
-
+	/**
+	 * Loads dynamically a menu. If no menu name is set, the menu is loaded
+	 * based on the category from the menu folder
+	 *
+	 * @param string $name OPTIONAL Menu name to load
+	 * @return string
+	 */
 	public function getMenu($name = null) {
 		if (!$name) {
 			$name = $this->_getParam('c');
@@ -215,5 +222,36 @@ class xBoilerplate {
 		}
 
 		return '';
+	}
+
+	/**
+	 * Returns the config object
+	 *
+	 * This is the merged array of config.php and local.php (if exists)
+	 * The config is only loaded once and also can be modified during runtime
+	 *
+	 * @return object
+	 */
+	public function getConfig() {
+
+		// Only loads config once
+		if (!$this->_config) {
+			// Load default config file
+			$configDir = dirname($this->_basePath) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR;
+			include $configDir . 'config.php';
+
+			$localFile = $configDir . 'local.php';
+
+			// Include local config file if exists
+			if (file_exists($localFile)) {
+				// Store current config
+				$baseConfig = $config;
+				include $localFile;
+				$config = array_merge($baseConfig, $config);
+			}
+			$this->_config = (object) $config;
+		}
+
+		return $this->_config;
 	}
 }
