@@ -41,7 +41,11 @@ class xBoilerplate {
 	 * @return string Returns the rendered page
 	 */
 	public function render() {
-		return $this->loadLayout('template.php');
+		// Template has be loaded first to set title, description, keywords first
+		$body = $this->loadLayout('template.php');
+		$header = $this->loadLayout('header.php');
+		$footer = $this->loadLayout('header.php');
+		return $header . $body . $footer;
 	}
 
 	/**

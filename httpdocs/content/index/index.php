@@ -1,4 +1,4 @@
-<?php $this->title = 'test'; ?>
+<?php $this->title = 'xBoilerplate'; ?>
 <h2>xBoilerplate</h2>
 <p>xBoilerplate was built to kickstart the development of small dynamic webpages. It can also be used to design websites or web applications directly in css 3. xBoilerplate is inspired by HTML5 Boilerplate and lots of code is copied from HTML5 Boilerplate. The main difference is that xBoilerplate allows dynamic pages with PHP and includes dynamic libraries like lessphp.<p></p>
 <h2>Getting Started</h2>
