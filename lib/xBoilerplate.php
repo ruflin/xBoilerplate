@@ -44,7 +44,7 @@ class xBoilerplate {
 		// Template has be loaded first to set title, description, keywords first
 		$body = $this->loadLayout('template.php');
 		$header = $this->loadLayout('header.php');
-		$footer = $this->loadLayout('header.php');
+		$footer = $this->loadLayout('footer.php');
 		return $header . $body . $footer;
 	}
 
