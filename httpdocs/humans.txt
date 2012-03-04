@@ -3,13 +3,13 @@
 
 
 /* TEAM */
-	<your title>: Nicolas Ruflin
-	Site:
-	Twitter:
-	Location:
+	Name: Nicolas Ruflin
+	Site: http://ruflin.com
+	Twitter: @ruflin
+	Location: Switzerland
 
 	Frontend Developer: Martin Saidler jr.
-	Site: www.centralway.com/factory
+	Site: http://centralway.com/factory
 	Twitter: @martinsaidler
 	Location: Switzerland
 
