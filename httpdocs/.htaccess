@@ -5,8 +5,8 @@ RewriteCond %{REQUEST_URI} !^\/js\/.* [NC]
 
 RewriteRule ^css\/(.*)$ index.php?f=$1 [L,NC]
 
-RewriteRule ^([[:alnum:]]+)/([[:alnum:]]+)$ index.php?c=$1&p=$2 [L,NC]
-RewriteRule ^([[:alnum:]]+)$ index.php?c=$1&p=index [L,NC]
+RewriteRule ^([[:alnum:]]+)/([[:alnum:]]+)\/?$ index.php?c=$1&p=$2&%{QUERY_STRING} [L,NC]
+RewriteRule ^([[:alnum:]]+)\/?$ index.php?c=$1&p=index&%{QUERY_STRING} [L,NC]
 
 # AddType text/x-component .htc
 

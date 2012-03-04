@@ -41,11 +41,20 @@ class xBoilerplate {
 	 * @return string Returns the rendered page
 	 */
 	public function render() {
-		// Template has be loaded first to set title, description, keywords first
+
 		$body = $this->loadLayout('template.php');
-		$header = $this->loadLayout('header.php');
-		$footer = $this->loadLayout('footer.php');
-		return $header . $body . $footer;
+
+		if ($this->_getParam('raw')) {
+			$content = $this->loadPage();
+		} else {
+			// Template has be loaded first to set title, description, keywords first
+			$header = $this->loadLayout('header.php');
+			$footer = $this->loadLayout('footer.php');
+
+			$content = $header . $body . $footer;
+		}
+
+		return $content;
 	}
 
 	/**
@@ -165,6 +174,16 @@ class xBoilerplate {
 		}
 		$param = $this->_filterParam($param);
 		return $param;
+	}
+
+	/**
+	 * @param string $key
+	 * @param string $value
+	 * @return xBoilerplate
+	 */
+	public function setParam($key, $value) {
+		$this->_params[$key] = $value;
+		return $this;
 	}
 
 
