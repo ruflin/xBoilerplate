@@ -29,8 +29,19 @@ class xBoilerplate {
 	protected $_basePath = '';
 	protected $_config = null;
 
-	public function __construct($uri, $params) {
-		$uriParse = parse_url($_SERVER['REQUEST_URI']);
+	public function __construct($page, $params) {
+		// Remove first slash
+		$page = substr($page, 1);
+
+		if (substr($page, -1, 1) == '/') {
+			$page = substr($page, 0, strlen($page) - 1);
+		}
+
+		if (empty($page)) {
+			$page = 'index';
+		}
+
+		$this->_page = $page;
 		$this->_params = $params;
 		$this->_basePath = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'httpdocs' . DIRECTORY_SEPARATOR;
 	}
@@ -44,17 +55,17 @@ class xBoilerplate {
 
 		$body = $this->loadLayout('template.php');
 
-		if ($this->_getParam('raw')) {
-			$content = $this->loadPage();
+		if ($this->getConfig()->raw) {
+			$page = $this->loadPage();
 		} else {
 			// Template has be loaded first to set title, description, keywords first
 			$header = $this->loadLayout('header.php');
 			$footer = $this->loadLayout('footer.php');
 
-			$content = $header . $body . $footer;
+			$page = $header . $body . $footer;
 		}
 
-		return $content;
+		return $page;
 	}
 
 	/**
@@ -62,16 +73,12 @@ class xBoilerplate {
 	 *
 	 * If the page is not found, content of page page-not-found is returned
 	 *
-	 * @param string $category OPTIONAL Takes category from params if not set
-	 * @param string $page OPTIONAL Takes page from params if not set
 	 * @return string Page content
 	 */
-	public function loadPage($category = null, $page = null) {
-		$category = $category ? $category : $this->getCategory();
-		$page = $page ? $page : $this->getPage();
+	public function loadPage() {
 
 		try {
-			$content = $this->loadContent($category . '/' . $page . '.php');
+			$content = $this->loadContent($this->_page . '.php');
 		} catch (Exception $e) {
 			$content = $this->loadContent('page-not-found.php');
 		}
@@ -83,7 +90,7 @@ class xBoilerplate {
 	 * @return string Content of file
 	 */
 	public function loadContent($file) {
-		$file = 'content/' . $file;
+		$file = 'page/' . $file;
 		return $this->_loadFile($file);
 	}
 

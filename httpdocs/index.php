@@ -24,15 +24,15 @@ spl_autoload_register('xodoa_autoload');
 
 $content = '';
 try {
-	$uri = $_SERVER['REQUEST_URI'];
+	$uri = parse_url($_SERVER['REQUEST_URI']);
 
 	// Load css
-	if (substr($uri, 1,3) == 'css') {
+	if (substr($uri['path'], 1,3) == 'css') {
 		header('Content-Type: text/css');
 		$less = new lessc('css/' . $_GET['f']);
 		$content = $less->parse();
 	} else {
-		$xBoilerplate = new xBoilerplate($_SERVER['REQUEST_URI'], $_GET);
+		$xBoilerplate = new xBoilerplate($uri['path'], $_GET);
 		$content = $xBoilerplate->render();
 	}
 } catch(Exception $e) {
