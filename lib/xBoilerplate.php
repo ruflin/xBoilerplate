@@ -76,21 +76,7 @@ class xBoilerplate {
 	 * @return string Page content
 	 */
 	public function loadPage() {
-
-		try {
-			$content = $this->loadContent($this->_page . '.php');
-		} catch (Exception $e) {
-			$content = $this->loadContent('page-not-found.php');
-		}
-		return $content;
-	}
-
-	/**
-	 * @param string $file Path to content file
-	 * @return string Content of file
-	 */
-	public function loadContent($file) {
-		$file = 'page/' . $file;
+		$file = 'page/' . $this->_page . '.php';
 		return $this->_loadFile($file);
 	}
 
@@ -181,16 +167,6 @@ class xBoilerplate {
 		}
 		$param = $this->_filterParam($param);
 		return $param;
-	}
-
-	/**
-	 * @param string $key
-	 * @param string $value
-	 * @return xBoilerplate
-	 */
-	public function setParam($key, $value) {
-		$this->_params[$key] = $value;
-		return $this;
 	}
 
 
