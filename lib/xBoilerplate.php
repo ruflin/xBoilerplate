@@ -139,23 +139,6 @@ class xBoilerplate {
 		return $content;
 	}
 
-	public function getCategory($category = '') {
-		$c = $this->_getParam('c');
-
-		if (!empty($category)) {
-			$c = $category;
-		}
-
-		if (empty($c)) {
-			$c = 'index';
-		}
-
-		// For security reasons
-		$c = $this->_filterParam($c);
-
-		return $c;
-	}
-
 	/**
 	 * Loads layout files
 	 *
