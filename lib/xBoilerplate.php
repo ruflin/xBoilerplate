@@ -53,7 +53,12 @@ class xBoilerplate {
 	 */
 	public function render() {
 
-		$body = $this->loadLayout('template.php');
+		try {
+			$body = $this->loadLayout('template.php');
+		} catch(UnexpectedValueException $e) {
+			$this->_page = 'page-not-found';
+			$body = $this->loadLayout('template.php');
+		}
 
 		if ($this->getConfig()->raw) {
 			$page = $this->loadPage();
@@ -66,6 +71,17 @@ class xBoilerplate {
 		}
 
 		return $page;
+	}
+
+	/**
+	 * Loads the content of the given component. Component path without .php
+	 *
+	 * @param string $component Component path / name
+	 * @return string
+	 */
+	public function loadComponent($component) {
+		$file = 'component/' . $component . '.php';
+		return $this->_loadFile($file);
 	}
 
 	/**
@@ -90,13 +106,13 @@ class xBoilerplate {
 	protected function _loadFile($file) {
 		// TODO: add more security checks
 		if (strpos($file, '..') !== false || substr($file, 0, 1) == '/') {
-			throw new Exception('Invalid file path:' . $file);
+			throw new UnexpectedValueException('Invalid file path:' . $file);
 		}
 
 		$file = $this->_basePath . $file;
 
 		if (!file_exists($file)) {
-			throw new Exception('File does not exist: ' . $file);
+			throw new UnexpectedValueException('File does not exist: ' . $file);
 		}
 
 		ob_start();
