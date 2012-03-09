@@ -101,6 +101,38 @@ class xBoilerplate {
 	}
 
 	/**
+	 * Loads layout files
+	 *
+	 * @param string $name Loads a layout file
+	 * @return string Layout content
+	 */
+	public function loadLayout($name) {
+		return $this->_loadFile('layout/' . $name);
+	}
+
+
+	/**
+	 * Loads dynamically a menu. If no menu name is set, the menu is loaded
+	 * based on the category from the menu folder
+	 *
+	 * @param string $name OPTIONAL Menu name to load
+	 * @return string
+	 */
+	public function loadMenu($name = null) {
+
+		$page = $this->_page;
+		$file = 'menu/' . $name . '.php';
+
+		try {
+			$content = $this->_loadFile($file);
+		} catch(UnexpectedValueException $e) {
+			$content = '';
+		}
+
+		return $content;
+	}
+
+	/**
 	 * Loads the content for a specific page
 	 *
 	 * If the page is not found, content of page page-not-found is returned
@@ -140,16 +172,6 @@ class xBoilerplate {
 	}
 
 	/**
-	 * Loads layout files
-	 *
-	 * @param string $name Loads a layout file
-	 * @return string Layout content
-	 */
-	public function loadLayout($name) {
-		return $this->_loadFile('layout/' . $name);
-	}
-
-	/**
 	 * @param string $name Param to read out
 	 * @return mixed|null|string
 	 */
@@ -162,7 +184,12 @@ class xBoilerplate {
 		return $param;
 	}
 
-
+	/**
+	 * Filters a param for security reason
+	 *
+	 * @param string $param Param content
+	 * @return string Filtered param
+	 */
 	protected function _filterParam($param) {
 		// For security reasons
 		$param = stripslashes(strip_tags($param));
@@ -174,52 +201,20 @@ class xBoilerplate {
 	}
 
 	/**
-	 * Loads dynamically a menu. If no menu name is set, the menu is loaded
-	 * based on the category from the menu folder
-	 *
-	 * @param string $name OPTIONAL Menu name to load
-	 * @return string
-	 */
-	public function getMenu($name = null) {
-		if (!$name) {
-			$name = $this->_getParam('c');
-		}
-
-		$file = $this->_basePath . 'menu/' . $name . '.php';
-		$content = '';
-
-		if (!empty($name) && file_exists($file)) {
-			ob_start();
-			include $file;
-			$content = ob_get_contents();
-			ob_end_clean();
-		}
-
-		return $content;
-	}
-
-	/**
 	 * Checks if the given category / page is active
 	 *
 	 * @param string $c
 	 * @param string $p
 	 * @return string Returns 'active' if is active
 	 */
-	public function getActive($c = '', $p = '') {
-
-		// TODO Remove get params
-		if (empty($p) && isset($_GET['c'])) {
-			return $c == $_GET['c']?'active':'';
+	public function getActive($page) {
+		if (empty($page)) {
+			$page = '/index';
 		}
 
-		if (!empty($p) && !empty($c)) {
-			if (isset($_GET['c']) && isset($_GET['p'])) {
-				if ($_GET['c'] == $c && $_GET['p'] == $p) {
-					return 'active';
-				}
-			}
+		if ($page == '/' . $this->_page) {
+			return 'active';
 		}
-
 		return '';
 	}
 
