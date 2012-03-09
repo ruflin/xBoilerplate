@@ -72,6 +72,8 @@ class xBoilerplate {
 		try {
 			$body = $this->loadLayout('template.php');
 		} catch(UnexpectedValueException $e) {
+			// Clean ouput first
+			ob_clean();
 			$this->_page = 'page-not-found';
 			$body = $this->loadLayout('template.php');
 		}
@@ -162,6 +164,8 @@ class xBoilerplate {
 		if (!file_exists($file)) {
 			throw new UnexpectedValueException('File does not exist: ' . $file);
 		}
+
+
 
 		ob_start();
 		include($file);
