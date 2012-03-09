@@ -26,23 +26,39 @@ class xBoilerplate {
 	public $keywords = null;
 
 	protected $_params = array();
+
+	/**
+	 * @var string Base path to load content files
+	 */
 	protected $_basePath = '';
+
+	/**
+	 * @var array Config array
+	 */
 	protected $_config = null;
 
+	/**
+	 * @param string $page Page path
+	 * @param array $params Params list
+	 */
 	public function __construct($page, $params) {
 		// Remove first slash
 		$page = substr($page, 1);
 
+		// Removes slash at the end
 		if (substr($page, -1, 1) == '/') {
 			$page = substr($page, 0, strlen($page) - 1);
 		}
 
+		// Default page is always index
 		if (empty($page)) {
 			$page = 'index';
 		}
 
 		$this->_page = $page;
 		$this->_params = $params;
+
+		// Content is loaded from httpdocs
 		$this->_basePath = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'httpdocs' . DIRECTORY_SEPARATOR;
 	}
 
@@ -121,28 +137,6 @@ class xBoilerplate {
 		ob_end_clean();
 
 		return $content;
-	}
-
-	/**
-	 * Returns the page param. Can be overwritten by first param
-	 *
-	 * @param string $page OPTIONAL
-	 * @return mixed|null|string
-	 */
-	public function getPage($page = '') {
-		$p = $this->_getParam('p');
-
-		if (!empty($page)) {
-			$p = $page;
-		}
-
-		if (empty($p)) {
-			$p = 'index';
-		}
-
-		$p = $this->_filterParam($p);
-
-		return $p;
 	}
 
 	public function getCategory($category = '') {
