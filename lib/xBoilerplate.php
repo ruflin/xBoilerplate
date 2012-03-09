@@ -78,6 +78,7 @@ class xBoilerplate {
 			$body = $this->loadLayout('template.php');
 		}
 
+		// Only loads raw page
 		if ($this->getConfig()->raw) {
 			$page = $this->loadPage();
 		} else {
@@ -120,9 +121,20 @@ class xBoilerplate {
 	 * @param string $name OPTIONAL Menu name to load
 	 * @return string
 	 */
-	public function loadMenu($name = null) {
+	public function loadMenu($name = null, $level = null) {
 
 		$page = $this->_page;
+
+		// Automaticaly loads the menu on the defined level
+		if (is_null($name) && !is_null($level)) {
+			$levels = explode('/', $page);
+
+			if (count($levels) >= $level) {
+				$levels = array_slice($levels, 0, $level + 1);
+				$name = implode('/', $levels);
+			}
+		}
+
 		$file = 'menu/' . $name . '.php';
 
 		try {
@@ -164,8 +176,6 @@ class xBoilerplate {
 		if (!file_exists($file)) {
 			throw new UnexpectedValueException('File does not exist: ' . $file);
 		}
-
-
 
 		ob_start();
 		include($file);
