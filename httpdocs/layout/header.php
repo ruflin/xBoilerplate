@@ -15,6 +15,7 @@
 		<link rel="shortcut icon" href="/img/favicon.ico">
 		<link type="text/css" rel="stylesheet" href="/css/reset.css">
 		<link type="text/css" rel="stylesheet" href="/css/style.css">
+		<?php echo $this->loadCss(); ?>
 
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
 		<script>window.Modernizr || document.write('<script src="/js/libs/modernizr-2.5.2.min.js"><\/script>')</script>

@@ -104,6 +104,36 @@ class xBoilerplate {
 	}
 
 	/**
+	 * Dynamically loads a css file based on the page
+	 *
+	 * @return string CSS HTML include
+	 */
+	public function loadCss() {
+		$file = 'css/page/' . $this->_page . '.css';
+		$content = '';
+
+		if (file_exists($this->_basePath . $file)) {
+			$content = '<link type="text/css" rel="stylesheet" href="/' . $file . '">';
+		}
+		return $content;
+	}
+
+	/**
+	 * Dynamically loads a js file based on the page
+	 *
+	 * @return string CSS HTML include
+	 */
+	public function loadJs() {
+		$file = 'js/page/' . $this->_page . '.js';
+		$content = '';
+
+		if (file_exists($this->_basePath . $file)) {
+			$content = '<script src="/' . $file . '"></script>';
+		}
+		return $content;
+	}
+
+	/**
 	 * Loads layout files
 	 *
 	 * @param string $name Loads a layout file

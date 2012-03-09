@@ -29,8 +29,12 @@ try {
 	// Load css
 	if (substr($uri['path'], 1,3) == 'css') {
 		header('Content-Type: text/css');
-		$less = new lessc('css/' . $_GET['f']);
+
+		$less = new lessc(substr($uri['path'], 1));
+		//print_r($less);
 		$content = $less->parse();
+		echo $content;
+		exit();
 	} else {
 		$xBoilerplate = new xBoilerplate($uri['path'], $_GET);
 		$content = $xBoilerplate->render();
