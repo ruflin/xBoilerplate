@@ -1,3 +1,5 @@
 .idea
 .vagrant
 config/local.php
+tmp/error.log
+tmp/test-error.log

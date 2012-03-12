@@ -8,7 +8,8 @@
  * @copyright Copyright (c) 2007-2012 Xodoa (http://xodoa.com)
  * @author   Nicolas Ruflin <ruflin@xodoa.com>
  */
-ini_set('error_log', '/tmp/php-error.log');
+
+ini_set('error_log', dirname(__DIR__) . '/tmp/error.log');
 
 error_reporting(E_ALL|E_STRICT);
 

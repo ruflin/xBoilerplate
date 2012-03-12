@@ -39,9 +39,9 @@ class xBoilerplate {
 
 	/**
 	 * @param string $page Page path
-	 * @param array $params Params list
+	 * @param array $params OPTIONAL Params list
 	 */
-	public function __construct($page, $params) {
+	public function __construct($page, array $params = array()) {
 		// Remove first slash
 		$page = substr($page, 1);
 
