@@ -1,5 +1,9 @@
 CHANGES
 
+2012-03-11
+- Refactor content to page. Now allows unlimited subpages
+- Add basic tests for xBoilerplate
+
 2012-02-19
 - Change loading of header and footer. Is now automatically loaded.
 - Fixed setting of title
