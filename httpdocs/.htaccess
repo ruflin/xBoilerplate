@@ -2,6 +2,8 @@ RewriteEngine On
 
 RewriteCond %{REQUEST_URI} !^\/img\/.* [NC]
 RewriteCond %{REQUEST_URI} !^\/js\/.* [NC]
+RewriteCond %{REQUEST_URI} !^\/humans.txt [NC]
+RewriteCond %{REQUEST_URI} !^\/robots.txt [NC]
 
 RewriteRule ^(.*)$ index.php?%{QUERY_STRING} [L,NC]
 
