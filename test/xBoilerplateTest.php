@@ -12,7 +12,7 @@ class xBoilerplateTest extends PHPUnit_Framework_TestCase
 	public function tearDown() {
 	}
 
-	public function testConstruct(){
+	public function testConstruct() {
 		$xBoilerplate = new xBoilerplate('/test');
 		$this->assertInstanceOf('xBoilerplate', $xBoilerplate);
 	}

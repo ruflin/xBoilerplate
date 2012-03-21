@@ -27,22 +27,21 @@ $content = '';
 try {
 	$uri = parse_url($_SERVER['REQUEST_URI']);
 
+	$xBoilerplate = new xBoilerplate($uri['path'], $_GET);
+
 	// Load css
 	if (substr($uri['path'], 1,3) == 'css') {
 		header('Content-Type: text/css');
 
-		$less = new lessc(substr($uri['path'], 1));
-		//print_r($less);
-		$content = $less->parse();
-		echo $content;
-		exit();
+		$cssContent = $xBoilerplate->loadCss(substr($uri['path'], 5));
+
+		$less = new lessc();
+		$content = $less->parse($cssContent);
 	} else {
-		$xBoilerplate = new xBoilerplate($uri['path'], $_GET);
 		$content = $xBoilerplate->render();
 	}
 } catch(Exception $e) {
 	error_log(print_r($e, true));
-	print_r($e);
 }
 
 echo $content;

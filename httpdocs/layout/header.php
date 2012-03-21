@@ -12,16 +12,16 @@
 		<meta name="author" content="Nicolas Ruflin">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<link rel="shortcut icon" href="/img/favicon.ico">
-		<link type="text/css" rel="stylesheet" href="/css/reset.css">
-		<link type="text/css" rel="stylesheet" href="/css/style.css">
-		<?php echo $this->loadCss(); ?>
+		<link rel="shortcut icon" href="<?php echo $this->img(); ?>favicon.ico">
+		<link type="text/css" rel="stylesheet" href="<?php echo $this->css(); ?>reset.css">
+		<link type="text/css" rel="stylesheet" href="<?php echo $this->css(); ?>style.css">
+		<?php echo $this->loadPageCss(); ?>
 
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
-		<script>window.Modernizr || document.write('<script src="/js/libs/modernizr-2.5.2.min.js"><\/script>')</script>
+		<script>window.Modernizr || document.write('<script src="<?php echo $this->js(); ?>libs/modernizr-2.5.2.min.js"><\/script>')</script>
 
 		<!--[if lt IE 9]>
-		<script type="text/javascript" src="/js/libs/selectivizr-1.0.2.min.js"></script>
+		<script type="text/javascript" src="<?php echo $this->js(); ?>libs/selectivizr-1.0.2.min.js"></script>
 		<![endif]-->
 	</head>
 	<body>

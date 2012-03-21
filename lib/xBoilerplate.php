@@ -63,6 +63,50 @@ class xBoilerplate {
 	}
 
 	/**
+	 * @return string Image path
+	 */
+	public function img() {
+		return $this->_getSourcePath('img', $this->getConfig()->cdn['img']);
+	}
+
+	/**
+	 * @return string Css source path
+	 */
+	public function css() {
+		return $this->_getSourcePath('css', $this->getConfig()->cdn['css']);
+	}
+
+	/**
+	 * @return string JS Source path
+	 */
+	public function js() {
+		return $this->_getSourcePath('js', $this->getConfig()->cdn['js']);
+	}
+
+	/**
+	 * @param string $type
+	 * @param string $url
+	 * @return string Path with version and cdn inside
+	 */
+	protected function _getSourcePath($type, $cdn = null) {
+		$version = $this->getConfig()->version;
+
+		$url = $type . '/';
+
+		if ($version) {
+			$url .= $version . '/';
+		}
+
+		if ($cdn) {
+			$url = $cdn . $url;
+		} else {
+			$url = '/' . $url;
+		}
+
+		return $url;
+	}
+
+	/**
 	 * Renders the page template
 	 *
 	 * @return string Returns the rendered page
@@ -89,7 +133,17 @@ class xBoilerplate {
 			$page = $header . $body . $footer;
 		}
 
+
 		return $page;
+	}
+
+	/**
+	 * @param string$jsFile
+	 * @return string Css content
+	 */
+	public function loadCss($jsFile) {
+		$file = 'css/' . $jsFile;
+		return $this->_loadFile($file);
 	}
 
 	/**
@@ -108,7 +162,7 @@ class xBoilerplate {
 	 *
 	 * @return string CSS HTML include
 	 */
-	public function loadCss() {
+	public function loadPageCss() {
 		$file = 'css/page/' . $this->_page . '.css';
 		$content = '';
 
@@ -123,7 +177,7 @@ class xBoilerplate {
 	 *
 	 * @return string CSS HTML include
 	 */
-	public function loadJs() {
+	public function loadPageJs() {
 		$file = 'js/page/' . $this->_page . '.js';
 		$content = '';
 
