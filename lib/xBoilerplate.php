@@ -42,6 +42,7 @@ class xBoilerplate {
 	 * @param array $params OPTIONAL Params list
 	 */
 	public function __construct($page, array $params = array()) {
+
 		// Remove first slash
 		$page = substr($page, 1);
 
@@ -138,11 +139,20 @@ class xBoilerplate {
 	}
 
 	/**
-	 * @param string$jsFile
+	 * @param string $cssFile
 	 * @return string Css content
 	 */
-	public function loadCss($jsFile) {
-		$file = 'css/' . $jsFile;
+	public function loadCss($cssFile) {
+		$file = 'css/' . $cssFile;
+		return $this->_loadFile($file);
+	}
+
+	/**
+	 * @param string $jsFile
+	 * @return string Js content
+	 */
+	public function loadJs($jsFile) {
+		$file = 'js/' . $jsFile;
 		return $this->_loadFile($file);
 	}
 

@@ -29,14 +29,17 @@ try {
 
 	$xBoilerplate = new xBoilerplate($uri['path'], $_GET);
 
-	// Load css
 	if (substr($uri['path'], 1,3) == 'css') {
+		// Load css
 		header('Content-Type: text/css');
-
 		$cssContent = $xBoilerplate->loadCss(substr($uri['path'], 5));
 
 		$less = new lessc();
 		$content = $less->parse($cssContent);
+	} else if (substr($uri['path'], 1,2) == 'js') {
+		// load js
+		header('Content-Type: text/javascript');
+		$content = $xBoilerplate->loadJs(substr($uri['path'], 4));
 	} else {
 		$content = $xBoilerplate->render();
 	}

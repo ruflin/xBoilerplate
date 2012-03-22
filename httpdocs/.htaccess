@@ -5,7 +5,6 @@ RewriteRule ^css/[0-9]+/(.*)$ /css/$1 [L,NC]
 RewriteRule ^js/[0-9]+/(.*)$ /js/$1 [L,NC]
 
 RewriteCond %{REQUEST_URI} !^\/img\/.* [NC]
-RewriteCond %{REQUEST_URI} !^\/js\/.* [NC]
 RewriteCond %{REQUEST_URI} !^\/humans.txt [NC]
 RewriteCond %{REQUEST_URI} !^\/robots.txt [NC]
 
