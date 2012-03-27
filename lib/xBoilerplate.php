@@ -138,23 +138,23 @@ class xBoilerplate {
 		return $page;
 	}
 
-	/**
-	 * @param string $cssFile
-	 * @return string Css content
-	 */
-	public function loadCss($cssFile) {
-		$file = 'css/' . $cssFile;
-		return $this->_loadFile($file);
-	}
+  public function loadCss($cssFile) {
+      $version = $this->getConfig()->version;
+      $cssFileClean = str_replace($version + DIRECTORY_SEPARATOR,'',$cssFile);
+      $file = 'css/' . $cssFileClean;
+      return $this->_loadFile($file);
+  }
 
-	/**
-	 * @param string $jsFile
-	 * @return string Js content
-	 */
-	public function loadJs($jsFile) {
-		$file = 'js/' . $jsFile;
-		return $this->_loadFile($file);
-	}
+  /**
+   * @param string $jsFile
+   * @return string Js content
+   */
+  public function loadJs($jsFile) {
+      $version = $this->getConfig()->version;
+      $jsFileClean = str_replace($version + DIRECTORY_SEPARATOR,'',$jsFile);
+      $file = 'js/' . $jsFileClean;
+      return $this->_loadFile($file);
+  }
 
 	/**
 	 * Loads the content of the given component. Component path without .php
