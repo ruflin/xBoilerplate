@@ -25,7 +25,12 @@ spl_autoload_register('xodoa_autoload');
 
 $content = '';
 try {
-	$uri = parse_url($_SERVER['REDIRECT_URL']);
+
+    if ($_SERVER['REDIRECT_URL']){
+        $uri = parse_url($_SERVER['REDIRECT_URL']);
+    } else {
+        $uri = parse_url($_SERVER['REQUEST_URI']);
+    }
 
 	$xBoilerplate = new xBoilerplate($uri['path'], $_GET);
 
