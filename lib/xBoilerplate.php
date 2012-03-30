@@ -84,6 +84,13 @@ class xBoilerplate {
 		return $this->_getSourcePath('js', $this->getConfig()->cdn['js']);
 	}
 
+    /**
+     * @return string Font Source path
+     */
+    public function font() {
+        return $this->_getSourcePath('font', $this->getConfig()->cdn['font']);
+    }
+
 	/**
 	 * @param string $type
 	 * @param string $url
