@@ -17,8 +17,8 @@
 		<link type="text/css" rel="stylesheet" href="<?php echo $this->css(); ?>style.css">
 		<?php echo $this->loadPageCss(); ?>
 
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
-		<script>window.Modernizr || document.write('<script src="<?php echo $this->js(); ?>libs/modernizr-2.5.2.min.js"><\/script>')</script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.5.3/modernizr.min.js"></script>
+		<script>window.Modernizr || document.write('<script src="<?php echo $this->js(); ?>libs/modernizr-2.5.3.min.js"><\/script>')</script>
 
 		<!--[if lt IE 9]>
 		<script type="text/javascript" src="<?php echo $this->js(); ?>libs/selectivizr-1.0.2.min.js"></script>
