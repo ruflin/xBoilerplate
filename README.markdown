@@ -20,9 +20,9 @@ the project and have it running in Apache is to execute vagrant up. Sure, you ha
 Documentation
 -------------
 xBoilerplate allows a maximum navigation level is 2. All urls are in the form `/category/page`. All content for the
-pages is stored in `httpdocs/content`. The default category and page is index, so if you access `/`, the file
-`httpdocs/content/index/index.php` is opened. If you call the url `/contact`, the file `httpdocs/content/contact/index.php`
-is opened. For the page `/about/team`, it's `httpdocs/content/contact/team.php`.
+pages is stored in `httpdocs/page`. The default category and page is index, so if you access `/`, the file
+`httpdocs/page/index/index.php` is opened. If you call the url `/contact`, the file `httpdocs/page/contact.php`
+is opened. For the page `/about/team`, it's `httpdocs/page/about/team.php`.
 
 The basic template around every page is in `httpdocs/layout/template.php`. This file loads the default `header.php` and
 `footer.php` which already has the basic content needed. To create your own template, overwrite the code in template.php
