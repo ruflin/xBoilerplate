@@ -50,7 +50,7 @@
 /*========================================================================
 	Main Elements
 ========================================================================*/
-.pie { position:relative; behavior:url(/js/libs/PIE.htc); }
+.pie { position:relative; behavior:url(<?php echo $this->js(); ?>libs/PIE.htc); }
 
 .clearBoth {
 	clear:both;
@@ -165,4 +165,5 @@ h2 {
 
 img.structure {
 	float: left;
+	background-image: url(<?php echo $this->img(); ?>test.png);
 }

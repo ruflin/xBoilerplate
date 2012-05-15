@@ -1,7 +1,14 @@
 RewriteEngine On
 
+RewriteRule ^img/[0-9]+/(.*)$ /img/$1 [L,NC]
+RewriteRule ^font/[0-9]+/(.*)$ /font/$1 [L,NC]
+RewriteRule ^css/[0-9]+/(.*)$ /css/$1 [L,NC]
+RewriteRule ^js/[0-9]+/(.*)$ /js/$1 [L,NC]
+
 RewriteCond %{REQUEST_URI} !^\/img\/.* [NC]
-RewriteCond %{REQUEST_URI} !^\/js\/.* [NC]
+RewriteCond %{REQUEST_URI} !^\/font\/.* [NC]
+RewriteCond %{REQUEST_URI} !^\/humans.txt [NC]
+RewriteCond %{REQUEST_URI} !^\/robots.txt [NC]
 
 RewriteRule ^(.*)$ index.php?%{QUERY_STRING} [L,NC]
 

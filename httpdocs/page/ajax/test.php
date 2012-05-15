@@ -1,2 +1,2 @@
 <?php $this->getConfig()->raw = true; ?>
-Ajax
+Ajax Test
