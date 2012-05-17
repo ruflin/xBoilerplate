@@ -180,11 +180,11 @@ class xBoilerplate {
 	 * @return string CSS HTML include
 	 */
 	public function loadPageCss() {
-		$file = 'css/page/' . $this->_page . '.css';
+		$file = $this->css().'page/' . $this->_page . '.css';
 		$content = '';
 
 		if (file_exists($this->_basePath . $file)) {
-			$content = '<link type="text/css" rel="stylesheet" href="/' . $file . '">';
+			$content = '<link type="text/css" rel="stylesheet" href="' . $file . '">';
 		}
 		return $content;
 	}
@@ -195,11 +195,11 @@ class xBoilerplate {
 	 * @return string CSS HTML include
 	 */
 	public function loadPageJs() {
-		$file = 'js/page/' . $this->_page . '.js';
+		$file = $this->js().'page/' . $this->_page . '.js';
 		$content = '';
 
 		if (file_exists($this->_basePath . $file)) {
-			$content = '<script src="/' . $file . '"></script>';
+			$content = '<script src="' . $file . '"></script>';
 		}
 		return $content;
 	}
