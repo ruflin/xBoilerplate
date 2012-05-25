@@ -61,6 +61,28 @@ class xBoilerplateTest extends PHPUnit_Framework_TestCase
         $this->assertContains("This is a component",$xBoilerplate->loadComponent("test"));
     }
 
+    public function testLoadLayout() {
+//        $regex = '';
+//
+//        $xBoilerplate = new xBoilerplate('/');
+//        $this->expectOutputRegex($regex, $xBoilerplate->loadLayout('template.php'));
+
+    }
+
+    public function testLoadCss() {
+        $xBoilerplate = new xBoilerplate('/');
+        $this->assertEquals('<link type="text/css" rel="stylesheet" href="/css/style.css">', $xBoilerplate->loadPageCss());
+    }
+
+    public function testCssFileExists() {
+        $this->assertFileExists('/vagrant/httpdocs/css/reset.css', 'File reset.css doesnt exist');
+        $this->assertFileExists('/vagrant/httpdocs/css/style.css', 'File style.css doesnt exist');
+    }
+
+    public function testJsFileExists() {
+
+    }
+
 
 
 
