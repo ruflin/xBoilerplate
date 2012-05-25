@@ -62,27 +62,32 @@ class xBoilerplateTest extends PHPUnit_Framework_TestCase
     }
 
     public function testLoadLayout() {
-//        $regex = '';
-//
-//        $xBoilerplate = new xBoilerplate('/');
-//        $this->expectOutputRegex($regex, $xBoilerplate->loadLayout('template.php'));
-
+        $layout = 'Gargle Blaster';
+        $xBoilerplate = new xBoilerplate('/');
+        $this->assertEquals($layout, $xBoilerplate->loadLayout('test.php'));
     }
 
     public function testLoadCss() {
         $xBoilerplate = new xBoilerplate('/');
-        $this->assertEquals('<link type="text/css" rel="stylesheet" href="/css/style.css">', $xBoilerplate->loadPageCss());
+        $this->assertEquals('Zaphod Beeblebrox in css!', $xBoilerplate->loadCss('test.css'));
+    }
+
+    public function testLoadJs() {
+        $js = 'alert(\'Zaphod Beeblebrox in js!\');';
+        $xBoilerplate = new xBoilerplate('/');
+        $this->assertEquals($js, $xBoilerplate->loadJs('test.js'));
+    }
+
+    public function testLoadMenu() {
+        $menu = 'Gargle Blaster';
+        $xBoilerplate = new xBoilerplate('/');
+        $this->assertEquals($menu, $xBoilerplate->loadMenu('test'));
     }
 
     public function testCssFileExists() {
         $this->assertFileExists('/vagrant/httpdocs/css/reset.css', 'File reset.css doesnt exist');
         $this->assertFileExists('/vagrant/httpdocs/css/style.css', 'File style.css doesnt exist');
     }
-
-    public function testJsFileExists() {
-
-    }
-
 
 
 
