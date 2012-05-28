@@ -68,8 +68,9 @@ class xBoilerplateTest extends PHPUnit_Framework_TestCase
     }
 
     public function testLoadCss() {
+        $expectedCss = '#test {background-color: red;}';
         $xBoilerplate = new xBoilerplate('/');
-        $this->assertEquals('Zaphod Beeblebrox in css!', $xBoilerplate->loadCss('test.css'));
+        $this->assertEquals($expectedCss, $xBoilerplate->loadCss('test.css'));
     }
 
     public function testLoadJs() {
@@ -85,8 +86,9 @@ class xBoilerplateTest extends PHPUnit_Framework_TestCase
     }
 
     public function testCssFileExists() {
-        $this->assertFileExists('/vagrant/httpdocs/css/reset.css', 'File reset.css doesnt exist');
-        $this->assertFileExists('/vagrant/httpdocs/css/style.css', 'File style.css doesnt exist');
+        $xBoilerplate = new xBoilerplate('/');
+        $this->assertFileExists($xBoilerplate->css() .'reset.css', 'File reset.css doesnt exist');
+        $this->assertFileExists('/css/style.css', 'File style.css doesnt exist');
     }
 
 
