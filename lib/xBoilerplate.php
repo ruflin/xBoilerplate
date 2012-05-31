@@ -10,6 +10,26 @@
 
 class xBoilerplate {
 
+    /**
+     * Static instance of xBoilerplate, instantiated in the getInstance() method
+     */
+    protected static $_instance = null;
+
+    /**
+     * Obtains the singleton instance of xBoilerplate, creating if necessary.
+     *
+     * Your index.php should handle the post-instantiation initialisation by calling pageStart().
+     *
+     * @static
+     * @return an instantiated instance of xBoilerplate
+     */
+    public static function getInstance() {
+        if(self::$_instance == null) {
+            self::$_instance = new xBoilerplate();
+        }
+        return self::$_instance;
+    }
+
 	/**
 	 * @var string Page title
 	 */
@@ -38,10 +58,19 @@ class xBoilerplate {
 	protected $_config = null;
 
 	/**
+     * Called to initialise the xBoilerplate instance with the current page's data.
+     *
+     * This method can only be called once, and should only be called by index.php
+     *
 	 * @param string $page Page path
 	 * @param array $params OPTIONAL Params list
+     * @throws RuntimeException if the page has already been started
+     * @returns xBoilerplate the xBoilerplate instance
 	 */
-	public function __construct($page, array $params = array()) {
+	public function pageStart($page, array $params = array()) {
+        if($this->_basePath != null) {
+            throw new RuntimeException('Page already started; pageStart() may only be called once.');
+        }
 
 		// Remove first slash
 		$page = substr($page, 1);
@@ -61,6 +90,7 @@ class xBoilerplate {
 
 		// Content is loaded from httpdocs
 		$this->_basePath = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'httpdocs' . DIRECTORY_SEPARATOR;
+        return $this;
 	}
 
 	/**
@@ -180,11 +210,11 @@ class xBoilerplate {
 	 * @return string CSS HTML include
 	 */
 	public function loadPageCss() {
-		$file = 'css/page/' . $this->_page . '.css';
+		$file = $this->css().'page/' . $this->_page . '.css';
 		$content = '';
 
 		if (file_exists($this->_basePath . $file)) {
-			$content = '<link type="text/css" rel="stylesheet" href="/' . $file . '">';
+			$content = '<link type="text/css" rel="stylesheet" href="' . $file . '">';
 		}
 		return $content;
 	}
@@ -195,11 +225,11 @@ class xBoilerplate {
 	 * @return string CSS HTML include
 	 */
 	public function loadPageJs() {
-		$file = 'js/page/' . $this->_page . '.js';
+		$file = $this->js().'page/' . $this->_page . '.js';
 		$content = '';
 
 		if (file_exists($this->_basePath . $file)) {
-			$content = '<script src="/' . $file . '"></script>';
+			$content = '<script src="' . $file . '"></script>';
 		}
 		return $content;
 	}
