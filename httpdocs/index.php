@@ -32,7 +32,7 @@ try {
         $uri = parse_url($_SERVER['REQUEST_URI']);
     }
 
-	$xBoilerplate = new xBoilerplate($uri['path'], $_GET);
+    $xBoilerplate = xBoilerplate::getInstance()->pageStart($uri['path'], $_GET);
 
 	if (substr($uri['path'], 1,3) == 'css') {
 		// Load css
