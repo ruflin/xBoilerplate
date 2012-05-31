@@ -62,7 +62,7 @@ class xBoilerplateTest extends PHPUnit_Framework_TestCase
     }
 
     public function testLoadLayout() {
-        $layout = 'Gargle Blaster';
+        $layout = 'Gargle Blaster Test';
         $xBoilerplate = new xBoilerplate('/');
         $this->assertEquals($layout, $xBoilerplate->loadLayout('test.php'));
     }

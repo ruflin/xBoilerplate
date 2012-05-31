@@ -1,2 +1,2 @@
 <?php
-echo 'Gargle Blaster';
+echo 'Gargle Blaster Test';
