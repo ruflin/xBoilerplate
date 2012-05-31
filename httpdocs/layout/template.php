@@ -12,4 +12,3 @@
 <footer>
 	&copy; xBoilerplate &nbsp; <a href="/humans.txt">Humans</a>
 </footer>
-
