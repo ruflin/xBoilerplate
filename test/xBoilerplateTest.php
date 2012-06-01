@@ -6,29 +6,29 @@ require_once dirname(__FILE__) . '/bootstrap.php';
 
 class xBoilerplateTest extends PHPUnit_Framework_TestCase
 {
-	public function setUp() {
-	}
+    public function setUp() {
+    }
 
-	public function tearDown() {
+    public function tearDown() {
         PrivateTestXBoilerplate::resetInstance();
-	}
+    }
 
-	public function testConstruct() {
+    public function testConstruct() {
         $xBoilerplate = xBoilerplate::getInstance()->pagestart('/test');
-		$this->assertInstanceOf('xBoilerplate', $xBoilerplate);
-	}
+        $this->assertInstanceOf('xBoilerplate', $xBoilerplate);
+    }
 
-	public function testGetConfig() {
+    public function testGetConfig() {
         $xBoilerplate = xBoilerplate::getInstance()->pagestart('/');
-		$this->assertTrue($xBoilerplate->getConfig()->dev);
-		$this->assertFalse($xBoilerplate->getConfig()->raw);
-	}
+        $this->assertTrue($xBoilerplate->getConfig()->dev);
+        $this->assertFalse($xBoilerplate->getConfig()->raw);
+    }
 
-	public function testRaw() {
+    public function testRaw() {
         $xBoilerplate = xBoilerplate::getInstance()->pagestart('/ajax/test');
-		$this->assertEquals('Ajax Test', $xBoilerplate->render());
-		$this->assertTrue($xBoilerplate->getConfig()->raw);
-	}
+        $this->assertEquals('Ajax Test', $xBoilerplate->render());
+        $this->assertTrue($xBoilerplate->getConfig()->raw);
+    }
 
     /**
      * @depends testRaw
@@ -40,6 +40,7 @@ class xBoilerplateTest extends PHPUnit_Framework_TestCase
 
     public function testGetPath_NoVersion(){
         $xBoilerplate = xBoilerplate::getInstance()->pagestart('/');
+        $xBoilerplate->getConfig()->version = '0';
         $this->assertEquals('/img/',$xBoilerplate->img());
         $this->assertEquals('/css/',$xBoilerplate->css());
         $this->assertEquals('/js/',$xBoilerplate->js());
@@ -48,7 +49,7 @@ class xBoilerplateTest extends PHPUnit_Framework_TestCase
     /**
      * @depends testGetPath_NoVersion
      */
-    public function testGetPath_WithVersion(){
+    public function testGetPathWithVersion(){
         $xBoilerplate = xBoilerplate::getInstance()->pagestart('/');
         $xBoilerplate->getConfig()->version = '1';
         $this->assertEquals('/img/1/',$xBoilerplate->img());
@@ -64,33 +65,58 @@ class xBoilerplateTest extends PHPUnit_Framework_TestCase
 
     public function testLoadLayout() {
         $layout = 'Gargle Blaster Test';
-        $xBoilerplate = new xBoilerplate('/');
+        $xBoilerplate = xBoilerplate::getInstance()->pagestart('/');
         $this->assertEquals($layout, $xBoilerplate->loadLayout('test.php'));
     }
 
     public function testLoadCss() {
         $expectedCss = '#test {background-color: red;}';
-        $xBoilerplate = new xBoilerplate('/');
+        $xBoilerplate = xBoilerplate::getInstance()->pagestart('/');
         $this->assertEquals($expectedCss, $xBoilerplate->loadCss('test.css'));
+    }
+
+    public function testLoadPageCss()
+    {
+        $expectedCss = '<link type="text/css" rel="stylesheet" href="/css/page/about/xodoa.css">';
+        $xBoilerplate = xBoilerplate::getInstance()->pagestart('/about/xodoa');
+        $xBoilerplate->getConfig()->version = '0';
+        $this->assertEquals($expectedCss, $xBoilerplate->loadPageCss());
+    }
+
+    public function testLoadPageJs()
+    {
+        $expectedCss = '<script src="/js/page/about/xodoa.js"></script>';
+        $xBoilerplate = xBoilerplate::getInstance()->pagestart('/about/xodoa');
+        $xBoilerplate->getConfig()->version = '0';
+        $this->assertEquals($expectedCss, $xBoilerplate->loadPageJs());
+    }
+
+    public function testLoadPageCssWithVersion()
+    {
+        $expectedCss = '<link type="text/css" rel="stylesheet" href="/css/1/page/about/xodoa.css">';
+        $xBoilerplate = xBoilerplate::getInstance()->pagestart('/about/xodoa');
+        $xBoilerplate->getConfig()->version = '1';
+        $this->assertEquals($expectedCss, $xBoilerplate->loadPageCss());
+    }
+
+    public function testLoadPageJsWithVersion()
+    {
+        $expectedCss = '<script src="/js/1/page/about/xodoa.js"></script>';
+        $xBoilerplate = xBoilerplate::getInstance()->pagestart('/about/xodoa');
+        $xBoilerplate->getConfig()->version = '1';
+        $this->assertEquals($expectedCss, $xBoilerplate->loadPageJs());
     }
 
     public function testLoadJs() {
         $js = 'alert(\'Zaphod Beeblebrox in js!\');';
-        $xBoilerplate = new xBoilerplate('/');
+        $xBoilerplate = xBoilerplate::getInstance()->pagestart('/');
         $this->assertEquals($js, $xBoilerplate->loadJs('test.js'));
     }
 
     public function testLoadMenu() {
         $menu = 'Gargle Blaster';
-        $xBoilerplate = new xBoilerplate('/');
+        $xBoilerplate = xBoilerplate::getInstance()->pagestart('/');
         $this->assertEquals($menu, $xBoilerplate->loadMenu('test'));
-    }
-
-    public function testCssFileExists() {
-        $this->markTestIncomplete('Test Incoplete');
-        $xBoilerplate = new xBoilerplate('/');
-        $this->assertFileExists($xBoilerplate->css() .'reset.css', 'File reset.css doesnt exist');
-        $this->assertFileExists('/css/style.css', 'File style.css doesnt exist');
     }
 
 
