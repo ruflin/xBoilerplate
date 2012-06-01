@@ -211,9 +211,10 @@ class xBoilerplate {
 	 */
 	public function loadPageCss() {
 		$file = $this->css().'page/' . $this->_page . '.css';
+		$localFile = 'css/page/' . $this->_page . '.css';
 		$content = '';
 
-		if (file_exists($this->_basePath . $file)) {
+		if (file_exists($this->_basePath . $localFile)) {
 			$content = '<link type="text/css" rel="stylesheet" href="' . $file . '">';
 		}
 		return $content;
@@ -226,9 +227,9 @@ class xBoilerplate {
 	 */
 	public function loadPageJs() {
 		$file = $this->js().'page/' . $this->_page . '.js';
+		$localFile = 'js/page/' . $this->_page . '.js';
 		$content = '';
-
-		if (file_exists($this->_basePath . $file)) {
+		if (file_exists($this->_basePath . $localFile)) {
 			$content = '<script src="' . $file . '"></script>';
 		}
 		return $content;
