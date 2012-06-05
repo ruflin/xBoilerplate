@@ -7,7 +7,12 @@
 	?>
 </header>
 <section>
-	<?php echo $this->loadPage(); ?>
+	<?php 
+		$this->pagecontent = $this->loadPage(); 
+		if($this->getConfig()->raw) {
+			echo $this->pagecontent;
+		} 	
+	?>
 </section>
 <footer>
 	&copy; xBoilerplate &nbsp; <a href="/humans.txt">Humans</a>

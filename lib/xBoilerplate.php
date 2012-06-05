@@ -162,7 +162,7 @@ class xBoilerplate {
 
 		// Only loads raw page
 		if ($this->getConfig()->raw) {
-			$page = $this->loadPage();
+			$page = $this->pagecontent;
 		} else {
 			// Template has be loaded first to set title, description, keywords first
 			$header = $this->loadLayout('header.php');
