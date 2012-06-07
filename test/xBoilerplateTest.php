@@ -4,6 +4,7 @@
  */
 require_once dirname(__FILE__) . '/bootstrap.php';
 
+
 class xBoilerplateTest extends PHPUnit_Framework_TestCase
 {
     public function setUp() {
