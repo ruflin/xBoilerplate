@@ -9,6 +9,6 @@ use Composer\Script\Event;
 class ComposerKickStart
 {
     public static function postInstall(Event $event) {
-        echo "DIR: " . __DIR__ . "\n";
+        throw new Exception("I'm here: " . __DIR__);
     }
 }
