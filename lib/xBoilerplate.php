@@ -152,25 +152,23 @@ class xBoilerplate {
 	public function render() {
 
 		try {
-			$body = $this->loadLayout('template.php');
+			$this->_content = $this->loadPage();			
 		} catch(UnexpectedValueException $e) {
 			// Clean ouput first
 			ob_clean();
-			$this->_page = 'page-not-found';
-			$body = $this->loadLayout('template.php');
+			$this->_page 	= 'page-not-found';
+			$this->_content = $this->loadPage();						
 		}
-
-		// Only loads raw page
+		
 		if ($this->getConfig()->raw) {
-			$page = $this->pagecontent;
+			$page = $this->_content;			
 		} else {
 			// Template has be loaded first to set title, description, keywords first
 			$header = $this->loadLayout('header.php');
 			$footer = $this->loadLayout('footer.php');
-
+			$body	= $this->loadLayout('template.php');
 			$page = $header . $body . $footer;
 		}
-
 
 		return $page;
 	}

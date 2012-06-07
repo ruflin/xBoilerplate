@@ -8,10 +8,7 @@
 </header>
 <section>
 	<?php 
-		$this->pagecontent = $this->loadPage(); 
-		if($this->getConfig()->raw) {
-			echo $this->pagecontent;
-		} 	
+		echo $this->_content; 		
 	?>
 </section>
 <footer>
