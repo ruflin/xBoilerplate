@@ -1,3 +1,7 @@
 {
-    "name": "otupman/xBoilerplate"
+    "name": "otupman/xBoilerplate",
+    "autoload": {
+        "classmap": ["lib/"]
+    }
+
 }
