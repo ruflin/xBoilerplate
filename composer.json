@@ -1,7 +1,12 @@
 {
-    "name": "otupman/xBoilerplate",
-    "autoload": {
+    "name": "otupman/xBoilerplate"
+    , "autoload": {
         "classmap": ["lib/"]
+    }
+    , "scripts": {
+        "post-install-cmd": [
+            "ComposerKickStart::postInstall"
+        ]
     }
 
 }
