@@ -1,4 +1,5 @@
 <?php
+namespace lib;
 /**
  * @author Oliver Tupman <oliver.tupman@centralway.com>
  * Date: 07/06/2012
