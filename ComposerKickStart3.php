@@ -1,5 +1,5 @@
 <?php
-namespace otupman;
+namespace xBoilerplate;
 /**
  * @author Oliver Tupman <oliver.tupman@centralway.com>
  * Date: 07/06/2012
