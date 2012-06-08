@@ -10,6 +10,6 @@ use Composer\Script\Event;
 class ComposerKickStart
 {
     public static function postInstall(Event $event) {
-        file_put_contents("TESTFILE.TXT", "This is a test!");
+        $event->getIO()->ask("Is this working?");
     }
 }
