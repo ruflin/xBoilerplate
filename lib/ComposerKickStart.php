@@ -1,4 +1,5 @@
 <?php
+namespace lib;
 /**
  * @author Oliver Tupman <oliver.tupman@centralway.com>
  * Date: 07/06/2012
@@ -9,6 +10,6 @@ use Composer\Script\Event;
 class ComposerKickStart
 {
     public static function postInstall(Event $event) {
-        throw new Exception("I'm here: " . __DIR__);
+        file_put_contents("TESTFILE.TXT", "This is a test!");
     }
 }
