@@ -6,7 +6,7 @@
     }
     , "scripts": {
         "post-install-cmd": [
-            "centralway\\ComposerKickStart::postInstall"
+            "ComposerKickStart::postInstall"
         ]
     }
 
