@@ -7,7 +7,7 @@ namespace otupman;
  */
 use Composer\Script\Event;
 
-class ComposerKickStart
+class ComposerKickStart3
 {
     public static function postInstall(Event $event) {
         $event->getIO()->ask("Is this working?");
