@@ -1,5 +1,6 @@
 {
     "name": "otupman/xBoilerplate"
+    , version: "0.0.2"
     , "autoload": {
         "classmap": ["lib/"]
     }
