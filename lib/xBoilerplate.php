@@ -67,7 +67,7 @@ class xBoilerplate {
      * @throws RuntimeException if the page has already been started
      * @returns xBoilerplate the xBoilerplate instance
 	 */
-	public function pageStart($page, array $params = array()) {
+	public function pageStart($page, array $params = array(), $basePath = __DIR__) {
         if($this->_basePath != null) {
             throw new RuntimeException('Page already started; pageStart() may only be called once.');
         }
@@ -89,7 +89,7 @@ class xBoilerplate {
 		$this->_params = $params;
 
 		// Content is loaded from httpdocs
-		$this->_basePath = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'httpdocs' . DIRECTORY_SEPARATOR;
+		$this->_basePath = dirname($basePath) . DIRECTORY_SEPARATOR . 'httpdocs' . DIRECTORY_SEPARATOR;
         return $this;
 	}
 
