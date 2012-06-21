@@ -34,6 +34,15 @@ class xBoilerplateTest extends PHPUnit_Framework_TestCase
     /**
      * @depends testRaw
      */
+    public function testRawUniqueCall() {
+        $xBoilerplate = xBoilerplate::getInstance()->pagestart('/ajax/count');
+        $xBoilerplate->counter = 0;
+        $this->assertEquals($xBoilerplate->counter+1, $xBoilerplate->render());
+    }
+
+    /**
+     * @depends testRaw
+     */
     public function testGetActivePage(){
         $xBoilerplate = xBoilerplate::getInstance()->pagestart('/ajax/test');
         $this->assertEquals('active',$xBoilerplate->getActive('/'.$xBoilerplate->_page) );

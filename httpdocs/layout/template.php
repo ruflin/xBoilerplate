@@ -7,7 +7,9 @@
 	?>
 </header>
 <section>
-	<?php echo $this->loadPage(); ?>
+	<?php 
+		echo $this->_content; 		
+	?>
 </section>
 <footer>
 	&copy; xBoilerplate &nbsp; <a href="/humans.txt">Humans</a>
