@@ -1,13 +1,7 @@
 {
-    "name": "otupman/xBoilerplate"
-    , "version": "0.2.0"
+    "name": "centralway/xBoilerplate"
+    , "version": "1.0.1"
     , "autoload": {
         "classmap": ["lib/"]
     }
-    , "scripts": {
-        "post-install-cmd": [
-            "ComposerKickStart::postInstall"
-        ]
-    }
-
 }
