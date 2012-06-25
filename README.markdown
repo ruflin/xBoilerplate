@@ -12,9 +12,40 @@ and functionality, this is not the goal. It should offer a simple solution to st
 
 Getting Started
 ---------------
-To get you started as fast as possible, xBoilerplate uses Vagrant. The only thing you have to do to setup
-the project and have it running in Apache is to execute vagrant up. Sure, you have to
-[install vagrant](http://vagrantup.com/docs/getting-started/index.html) first.
+To get you started as fast as possible, xBoilerplate uses Vagrant so be sure to
+[install vagrant](http://vagrantup.com/docs/getting-started/index.html) first. Having done that, there are two ways forward:
+
+1) Composer (recommended)
+
+[Composer](http://getcomposer.org/doc/00-intro.md) is a dependency management tool for PHP, and xBoilerplate is a
+Composed package. Download [composer.phar](http://getcomposer.org/composer.phar) and put it into the directory that
+will be the root of your project. Then create a file called composer.json and insert the following:
+
+{
+    "name": "COMPANY/APPLICATION",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/centralway/xBoilerplate"
+        }
+    ],
+    "require": {
+        "centralway/xBoilerplate": ">=1.2"
+    }
+}
+
+Within the directory you created, run the following command to cause Composer to obtain the dependencies (xBoilerplate):
+
+php composer.phar install
+
+Next, run the auto-deploy script that will create a skeleton xBoilerplate application:
+
+php vendor/centralway/xBoilerplate/deploy.php
+
+2) Direct check-out (not recommended)
+
+You can, if you wish, simply download the xBoilerplate zip file and run vagrant from within there, however you will not
+benefit from having dependency management built-in.
 
 
 Documentation
