@@ -67,7 +67,7 @@ class xBoilerplate {
      * @throws RuntimeException if the page has already been started
      * @returns xBoilerplate the xBoilerplate instance
 	 */
-	public function pageStart($page, array $params = array()) {
+	public function pageStart($page, array $params = array(), $basePath = __DIR__) {
         if($this->_basePath != null) {
             throw new RuntimeException('Page already started; pageStart() may only be called once.');
         }
@@ -89,7 +89,7 @@ class xBoilerplate {
 		$this->_params = $params;
 
 		// Content is loaded from httpdocs
-		$this->_basePath = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'httpdocs' . DIRECTORY_SEPARATOR;
+		$this->_basePath = dirname($basePath) . DIRECTORY_SEPARATOR . 'httpdocs' . DIRECTORY_SEPARATOR;
         return $this;
 	}
 
@@ -144,36 +144,34 @@ class xBoilerplate {
 		return $url;
 	}
 
-	/**
-	 * Renders the page template
-	 *
-	 * @return string Returns the rendered page
-	 */
-	public function render() {
+    /**
+     * Renders the page template
+     *
+     * @return string Returns the rendered page
+     */
+    public function render() {
 
-		try {
-			$body = $this->loadLayout('template.php');
-		} catch(UnexpectedValueException $e) {
-			// Clean ouput first
-			ob_clean();
-			$this->_page = 'page-not-found';
-			$body = $this->loadLayout('template.php');
-		}
+        try {
+            $this->_content = $this->loadPage();
+        } catch(UnexpectedValueException $e) {
+            // Clean ouput first
+            ob_clean();
+            $this->_page 	= 'page-not-found';
+            $this->_content = $this->loadPage();
+        }
 
-		// Only loads raw page
-		if ($this->getConfig()->raw) {
-			$page = $this->loadPage();
-		} else {
-			// Template has be loaded first to set title, description, keywords first
-			$header = $this->loadLayout('header.php');
-			$footer = $this->loadLayout('footer.php');
+        if ($this->getConfig()->raw) {
+            $page = $this->_content;
+        } else {
+            // Template has be loaded first to set title, description, keywords first
+            $header = $this->loadLayout('header.php');
+            $footer = $this->loadLayout('footer.php');
+            $body	= $this->loadLayout('template.php');
+            $page = $header . $body . $footer;
+        }
 
-			$page = $header . $body . $footer;
-		}
-
-
-		return $page;
-	}
+        return $page;
+    }
 
 	/**
 	 * @param string $cssFile
@@ -211,9 +209,10 @@ class xBoilerplate {
 	 */
 	public function loadPageCss() {
 		$file = $this->css().'page/' . $this->_page . '.css';
+		$localFile = 'css/page/' . $this->_page . '.css';
 		$content = '';
 
-		if (file_exists($this->_basePath . $file)) {
+		if (file_exists($this->_basePath . $localFile)) {
 			$content = '<link type="text/css" rel="stylesheet" href="' . $file . '">';
 		}
 		return $content;
@@ -226,9 +225,9 @@ class xBoilerplate {
 	 */
 	public function loadPageJs() {
 		$file = $this->js().'page/' . $this->_page . '.js';
+		$localFile = 'js/page/' . $this->_page . '.js';
 		$content = '';
-
-		if (file_exists($this->_basePath . $file)) {
+		if (file_exists($this->_basePath . $localFile)) {
 			$content = '<script src="' . $file . '"></script>';
 		}
 		return $content;
